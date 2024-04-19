@@ -88,83 +88,81 @@ public class Homework {
     public int hashCode() {
       return Objects.hash(name);
     }
-  }
-
-  /**
-   * Найти количество сотрудников, старше x лет с зарплатой больше, чем d
-   */
-  public static int countPersons(List<Person> persons, int x, double d) {
-    return (int) persons.stream()
+    /**
+     * Найти количество сотрудников, старше x лет с зарплатой больше, чем d
+     */
+    public static int countPersons(List<Person> persons, int x, double d) {
+      return (int) persons.stream()
               .filter(person -> person.age > x )
               .filter(person -> person.salary > d)
               .count();
-  }
-  public static int countPersons2(List<Person> persons, int x, double d) {
-    int count = 0;
-    for (Person person:
-         persons) {
-      if (person.getAge() > x && person.getSalary() > d){
-        count++;
-      }
     }
-    return count;
-  }
-
-  /**
-   * Найти среднюю зарплату сотрудников, которые работают в департаменте X
-   */
-  public static OptionalDouble averageSalary(List<Person> persons, int x) {
-    return persons.stream()
-            .filter(person -> person.getDepartment().getName().contains(Integer.toString(x)))
-            .mapToDouble(Person::getSalary)
-            .average();
-  }
-
-  public static double averageSalary2(List<Person> persons, int x) {
-    double avgSalary = 0.0;
-    int count = 0;
-    for (Person p:
-         persons) {
-      if (p.getDepartment().getName().contains(Integer.toString(x))){
-        avgSalary += p.getSalary();
-        count++;
+    public static int countPersons2(List<Person> persons, int x, double d) {
+      int count = 0;
+      for (Person person:
+              persons) {
+        if (person.getAge() > x && person.getSalary() > d){
+          count++;
+        }
       }
+      return count;
     }
-    if (count == 0) return 0d;
-    return avgSalary /= count;
-  }
 
-  /**
-   * Сгруппировать сотрудников по департаментам
-   */
-  public static Map<Department, List<Person>> groupByDepartment(List<Person> persons) {
+    /**
+     * Найти среднюю зарплату сотрудников, которые работают в департаменте X
+     */
+    public static OptionalDouble averageSalary(List<Person> persons, int x) {
+      return persons.stream()
+              .filter(person -> person.getDepartment().getName().contains(Integer.toString(x)))
+              .mapToDouble(Person::getSalary)
+              .average();
+    }
+
+    public static double averageSalary2(List<Person> persons, int x) {
+      double avgSalary = 0.0;
+      int count = 0;
+      for (Person p:
+              persons) {
+        if (p.getDepartment().getName().contains(Integer.toString(x))){
+          avgSalary += p.getSalary();
+          count++;
+        }
+      }
+      if (count == 0) return 0d;
+      return avgSalary /= count;
+    }
+
+    /**
+     * Сгруппировать сотрудников по департаментам
+     */
+    public static Map<Department, List<Person>> groupByDepartment(List<Person> persons) {
       return persons.stream()
               .collect(Collectors.groupingBy(Person::getDepartment));
-  }
+    }
 
-  /**
-   * Найти максимальные зарплаты по отделам
-   */
-  public static Map<Department, Double> maxSalaryByDepartment(List<Person> persons) {
-    return persons.stream()
-            .collect(Collectors.toMap(Person::getDepartment, Person::getSalary, Math::max));
-  }
+    /**
+     * Найти максимальные зарплаты по отделам
+     */
+    public static Map<Department, Double> maxSalaryByDepartment(List<Person> persons) {
+      return persons.stream()
+              .collect(Collectors.toMap(Person::getDepartment, Person::getSalary, Math::max));
+    }
 
-  /**
-   * ** Сгруппировать имена сотрудников по департаментам
-   */
-  public static Map<Department, List<String>> groupPersonNamesByDepartment(List<Person> persons) {
-    return persons.stream()
-            .collect(Collectors.groupingBy(Person::getDepartment,
-                    Collectors.mapping(Person::getName,Collectors.toList())));
-  }
+    /**
+     * ** Сгруппировать имена сотрудников по департаментам
+     */
+    public static Map<Department, List<String>> groupPersonNamesByDepartment(List<Person> persons) {
+      return persons.stream()
+              .collect(Collectors.groupingBy(Person::getDepartment,
+                      Collectors.mapping(Person::getName,Collectors.toList())));
+    }
 
-  /**
-   * ** Найти сотрудников с минимальными зарплатами в своем отделе
-   */
-  public static List<Person> minSalaryPersons(List<Person> persons) {
-    // В каждом департаменте ищем сотрудника с минимальной зарплатой.
-    // Всех таких сотрудников собираем в список и возвращаем из метода.
+    /**
+     * ** Найти сотрудников с минимальными зарплатами в своем отделе
+     */
+    public static List<Person> minSalaryPersons(List<Person> persons) {
+      // В каждом департаменте ищем сотрудника с минимальной зарплатой.
+      // Всех таких сотрудников собираем в список и возвращаем из метода.
       return persons.stream()
               .collect(Collectors.groupingBy(Person::getDepartment,
                       Collectors.minBy(Comparator.comparing(Person::getSalary))))
@@ -172,6 +170,8 @@ public class Homework {
               .stream()
               .map(Optional::get)
               .collect(Collectors.toList());
+    }
+
   }
 
 }
