@@ -13,7 +13,7 @@ public class RandomDateProcessor {
                 long min = randomDate.min();
                 long max = randomDate.max();
                 long dateUnixTS = ThreadLocalRandom.current().nextLong(min, max);
-                System.out.println(dateUnixTS);
+                //System.out.println(dateUnixTS);
                 declaredField.setAccessible(true);
                 try {
                     if (declaredField.getType().equals(Date.class)) {
@@ -24,7 +24,7 @@ public class RandomDateProcessor {
                         declaredField.set(object,
                                 LocalDate.ofInstant(Instant.ofEpochMilli(dateUnixTS), ZoneId.systemDefault()));
                     }
-                    System.out.println(declaredField.get(object));
+                    //System.out.println(declaredField.get(object));
                 } catch (IllegalAccessException e) {
                     System.err.println(e.getMessage());
                 }
