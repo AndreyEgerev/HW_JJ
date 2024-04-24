@@ -12,11 +12,10 @@ import java.lang.annotation.Target;
    *  1.2 Аннотация должна работать с полем типа java.util.Date.
    *  1.3 Должна генерить дату в диапазоне [min, max)
    *  1.4 ** Научиться работать с полями LocalDateTime, LocalDate, Instant, ... (классы java.time.*)
-   *
+
    *  Реализовать класс RandomDateProcessor по аналогии с RandomIntegerProcessor, который обрабатывает аннотацию.
    */
 
-  // TODO
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface RandomDate {
