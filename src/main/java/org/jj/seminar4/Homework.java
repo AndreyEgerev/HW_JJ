@@ -28,6 +28,8 @@ public class Homework {
             List<GroupStudent> groups = new ArrayList<>();
             List<Student> students = new ArrayList<>();
             System.out.println("Очистка таблиц");
+            //dao.truncateTable(Student.class);
+            //dao.truncateTable(GroupStudent.class);
             System.out.println("Добавление данных о группах");
             //Добавление групп
             for (int i = 1; i <= 3; i++) {
@@ -42,7 +44,7 @@ public class Homework {
 //          Добавление студентов
             System.out.println("Добавление данных о студентах");
             for (int i = 0; i < 50; i++) {
-                students.add(new Student(
+                    students.add(new Student(
                         FIRST_NAME.getRandomName(),
                         SECOND_NAME.getRandomName(),
                         groups.get(ThreadLocalRandom.current().nextInt(groups.size()))));
@@ -52,8 +54,8 @@ public class Homework {
             students = dao.selectAllData(Student.class);
             for (Student s:
                  students) {
-                System.out.println(s);
-                System.out.println("-".repeat(10));
+                    System.out.println(s);
+                    System.out.println("-".repeat(10));
             }
 
             System.out.println("Работа поиска по ID");
@@ -69,7 +71,7 @@ public class Homework {
             students = dao.selectStudentByIdGroup(Student.class, "id","2");
             for (Student s:
                     students) {
-                System.out.println(s);
+                    System.out.println(s);
             }
 
             System.out.println("-".repeat(10));
@@ -77,7 +79,7 @@ public class Homework {
             students = dao.selectStudentByIdGroup(Student.class, "name", "test2");
             for (Student s:
                     students) {
-                System.out.println(s);
+                    System.out.println(s);
             }
             System.out.println("Изменение данных студента");
             long idStudent = ThreadLocalRandom.current().nextLong(50);
@@ -117,9 +119,11 @@ public class Homework {
             students = dao.selectStudentByIdGroup(Student.class, "id", null);
             for (Student s:
                  students) {
-                System.out.println(s);
+                    System.out.println(s);
             }
+            System.out.println("Очистка таблиц");
             dao.truncateTable(Student.class);
+            dao.truncateTable(GroupStudent.class);
 
 //        }
 
