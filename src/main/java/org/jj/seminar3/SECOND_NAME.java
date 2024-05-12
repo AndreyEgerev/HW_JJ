@@ -1,6 +1,5 @@
 package org.jj.seminar3;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public enum SECOND_NAME {

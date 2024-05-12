@@ -30,7 +30,7 @@ public class Homework {
 
   public static void main(String[] args) {
 
-      try (Connection connection = DriverManager.getConnection(URLDB, USER, PASS);){
+      try (Connection connection = DriverManager.getConnection(URLDB, USER, PASS)){
           DAO_JDBC.createTable(connection);
           for (int i = 0; i < 4; i++) {
               DAO_JDBC.insertData(connection, "A" + i + "-24");
@@ -41,9 +41,11 @@ public class Homework {
           DAO_JDBC.getDataStudent(connection);
           System.out.println("-".repeat(20));
           DAO_JDBC.getDataStudent(connection, "A1-24");
+          System.out.println("-".repeat(20));
+          DAO_JDBC.getDataStudent(connection, "A10-24");
 
       } catch (SQLException e) {
-          System.out.println("Ошибка в работе с БД: " + e.getMessage());;
+          System.out.println("Ошибка в работе с БД: " + e.getMessage());
       }
 
   }
