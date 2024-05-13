@@ -17,12 +17,12 @@ public class DAO_Hibernate {
         sessionFactory = configuration.buildSessionFactory();
     }
 
-    public void truncateTable (Class type) {
+    public void truncateTable (Class<?> type) {
         try (Session session = sessionFactory.openSession()){
             session.beginTransaction();
-            String sqlRequest = "TRUNCATE TABLE " + type.getSimpleName() + ";";
-            String sql2 = "DELETE FROM " + type.getSimpleName() + " u";
-            session.createQuery(sql2).executeUpdate();
+            //String sqlRequest = "TRUNCATE TABLE " + type.getSimpleName() + ";";
+            String sql = "DELETE FROM " + type.getSimpleName() + " u";
+            session.createQuery(sql).executeUpdate();
             //session.createNativeQuery(sqlRequest).executeUpdate();
             session.getTransaction().commit();
         }
